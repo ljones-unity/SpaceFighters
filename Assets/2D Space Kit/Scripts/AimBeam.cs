@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AimBeam : MonoBehaviour {
 
-	public LineRenderer? lnRenderer;
+	public LineRenderer lnRenderer;
 	public float visual_Distance = 1024f;
 	Vector2 beam;
 	
