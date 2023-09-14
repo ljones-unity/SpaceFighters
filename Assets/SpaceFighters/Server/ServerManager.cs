@@ -16,6 +16,8 @@ namespace SpaceFighters.Server
 
         public override void OnNetworkSpawn()
         {
+            if (Network == null) Network = NetworkManager.Singleton;
+
             Debug.Log("Server Manager Spawned");
             // Only exist on server
             if (IsServer && Instance == null)
