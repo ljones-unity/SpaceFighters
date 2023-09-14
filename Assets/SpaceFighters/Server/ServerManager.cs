@@ -90,7 +90,7 @@ namespace SpaceFighters.Server
                 return;
             }
 
-            game.PlayerGameInfoTable.Add(client.ClientId, player);
+            game.AddPlayer(client.ClientId, player);
             Debug.Log($"Initalized client {client.ClientId}");
         }
     }

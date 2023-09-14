@@ -5,8 +5,10 @@ using UnityEngine;
 
 namespace SpaceFighters.Server
 {
-    public class PlayerController : NetworkBehaviour
+    public class ShipController : NetworkBehaviour
     {
+        [SerializeField] private Ship? Ship;
+
         [SerializeField] private float Acceleration;
         [SerializeField] private float Speed;
         [SerializeField] private float AngularAcceleration;
@@ -14,10 +16,12 @@ namespace SpaceFighters.Server
 
         [SerializeField] private float ShootCooldown;
 
-        [SerializeField] Rigidbody2D? MainRigidbody;
-        [SerializeField] Bullet? BulletPrefab;
+        [SerializeField] private Rigidbody2D? MainRigidbody;
+        [SerializeField] private Bullet? BulletPrefab;
 
         private float lastShotTime;
+
+        public Vector2 Position => MainRigidbody?.position ?? Vector2.zero;
 
         public void Move(Vector2 input, float dt)
         {
@@ -36,11 +40,20 @@ namespace SpaceFighters.Server
         public void Shoot()
         {
             if (!IsServer) return;
+            if (Ship == null) return;
             if (lastShotTime + ShootCooldown > Time.time) return;
             Bullet? bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
             if (bullet == null) return;
             bullet.NetworkObject.Spawn();
+            bullet.Shoot(Ship);
             lastShotTime = Time.time;
+        }
+
+        public void Push(Vector2 force)
+        {
+            if (!IsServer) return;
+            if (MainRigidbody == null) return;
+            MainRigidbody.AddForce(force);
         }
     }
 }

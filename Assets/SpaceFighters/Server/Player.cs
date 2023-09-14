@@ -6,6 +6,9 @@ namespace SpaceFighters.Server
 {
     public class Player : MonoBehaviour
     {
-        public PlayerController? controller;
+        public ShipController? controller;
+        public Ship? ship;
+
+        [HideInInspector] public ulong clientId;
     }
 }
