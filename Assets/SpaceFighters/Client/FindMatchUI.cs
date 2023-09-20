@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 #nullable enable
 
-namespace SpaceFighters
+namespace SpaceFighters.Client
 {
     public class FindMatchUI : MonoBehaviour
     {
@@ -28,7 +28,7 @@ namespace SpaceFighters
             FindMatchButton?.gameObject.SetActive(false);
             LoadingIndicator?.SetLoadingText("Finding match...");
             LoadingIndicator?.gameObject.SetActive(true);
-            bool result = await PregameManager.Instance.FindMatch();
+            bool result = await PregameManager.Instance.FindMatchAsync();
             LoadingIndicator?.gameObject.SetActive(false);
             if (result)
             {
@@ -37,7 +37,6 @@ namespace SpaceFighters
             }
             else
             {
-                Debug.LogError("Find match failed");
                 FindMatchButton?.gameObject.SetActive(true);
             }
         }

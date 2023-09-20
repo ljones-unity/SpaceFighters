@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoadingIndicator: {fileID: 1048683369324510362}
+  LoadingText: {fileID: 5999624979385659493}
   RotationSpeed: 15
 --- !u!1 &1616465235891242735
 GameObject:

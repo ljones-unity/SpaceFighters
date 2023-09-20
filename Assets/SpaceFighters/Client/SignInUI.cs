@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using Unity.Services.Core;
+using UnityEngine;
 using UnityEngine.UI;
 
 #nullable enable
 
-namespace SpaceFighters
+namespace SpaceFighters.Client
 {
     public class SignInUI : MonoBehaviour
     {
@@ -29,7 +30,7 @@ namespace SpaceFighters
             SignInButton?.gameObject.SetActive(false);
             LoadingIndicator?.SetLoadingText("Signing in...");
             LoadingIndicator?.gameObject.SetActive(true);
-            bool result = await PregameManager.Instance.SignIn();
+            bool result = await PregameManager.Instance.SignInAsync();
             LoadingIndicator?.gameObject.SetActive(false);
             if (result)
             {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 #nullable enable
 
-namespace SpaceFighters
+namespace SpaceFighters.Client
 {
     public class LoadingIndicatorUI : MonoBehaviour
     {
